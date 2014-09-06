@@ -1,0 +1,89 @@
+<!-- New Modal -->
+<div class="modal fade" id="new_modal" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="newModalLabel">New Product</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+    		<div ng-include="'assets/partials/_form.html'"></div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveProduct()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- New Modal -->
+
+<!-- Edit Modal -->
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Product</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" ng-submit="updateMovie()">
+    		<div ng-include="'assets/partials/_form.html'"></div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteProduct(product)">Delete</button>
+        <button type="button" class="btn btn-primary" ng-click="updateProduct()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+
+<!-- Container -->
+<div class="container">
+    <div class="well well-sm">
+        <div class="btn-group">
+        	<!-- <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus">New</span></button> -->
+        	<a href="#" ng-click="createProduct()" id="new_button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#new_modal"><span class="glyphicon glyphicon-plus">
+            </span>New</a> 
+        </div>
+        <div class="btn-group" style="margin-left: 82%;">
+            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                class="glyphicon glyphicon-th"></span>Grid</a>
+        </div>
+    </div>
+    <div id="products" class="row list-group" >
+        <div class="item  col-xs-4 col-lg-4" ng-repeat="product in products">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{product.name}}</h4>
+                    <p class="group inner list-group-item-text">
+                        This is directed by {{product.description}}</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                {{product.price}}</p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a class="btn btn-success" href="#" data-toggle="modal" data-target="#editModal" ng-click="editProduct(product.id)">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+</div>
+<!-- Container -->
+
+<script type="text/javascript">
+	$('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+	$('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+</script>
